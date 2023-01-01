@@ -13,7 +13,7 @@ from subprocess import run
 # Each color is the color for an individual row in the flag
 flags = {
 	'STRAIGHT':		[0, 255, 0, 255, 0],
-#	'LGBT':			[196, 208, 226, 28, 20, 90],
+#	'RAINBOW':		[196, 208, 226, 28, 20, 90],
 #	'GAYMEN':		[23, 43, 115, 255, 117, 57, 55],
 #	'BISEXUAL':		[198, 198, 97, 25, 25],
 #	'LESBIAN':		[202, 209, 255, 255, 168, 161],
@@ -38,7 +38,7 @@ def color256(col, bg_fg):
 def draw_info(flag_name):
 	flag_name = flag_name.upper()	# Case-insensitive input
 	isTwo_color = False
-	# Workaround for flags with eve count of rows: removes string with
+	# Workaround for flags with even count of rows: removes string with
 	# architecture to prevent going underneath or line duplication (basically
 	# UB for that shit).
 	width = 20
