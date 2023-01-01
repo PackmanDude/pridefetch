@@ -13,8 +13,8 @@ from subprocess import run
 # Each color is the color for an individual row in the flag
 flags = {
 	'STRAIGHT':		[0, 255, 0, 255, 0],
-#	'CLASSIC':		[196, 208, 226, 28, 20, 90],
-#	'GAY':			[23, 43, 115, 255, 117, 57, 55],
+#	'LGBT':			[196, 208, 226, 28, 20, 90],
+#	'GAYMEN':		[23, 43, 115, 255, 117, 57, 55],
 #	'BISEXUAL':		[198, 198, 97, 25, 25],
 #	'LESBIAN':		[202, 209, 255, 255, 168, 161],
 #	'PANSEXUAL':	[198, 198, 220, 220, 39, 39],
@@ -38,10 +38,11 @@ def color256(col, bg_fg):
 def draw_info(flag_name):
 	flag_name = flag_name.upper()	# Case-insensitive input
 	isTwo_color = False
-	# 2/4 rows flag adaptation, removes string with architecture to prevent
-	# going underneath or line duplication (undefined behavior)
+	# Workaround for flags with eve count of rows: removes string with
+	# architecture to prevent going underneath or line duplication (basically
+	# UB for that shit).
 	width = 20
-	if flag_name == 'UKRAINIAN' or flag_name == 'UIA': isTwo_color=True
+	if flag_name == 'UKRAINIAN' or flag_name == 'UPA': isTwo_color=True
 	if isTwo_color: width=15
 
 	flag = flags[flag_name]
@@ -54,10 +55,10 @@ def draw_info(flag_name):
 	# Make sure that the row color is different to the color of the hostname
 	row_color = color256(flag[1] if flag[0] != flag[1] else flag[2], 'fg')
 
-	reset = '\033[0m\033[39m'	# 💀💀💀
+	reset = '\033[0m\033[39m'
 
 	print()
-	for row in flag:	# Just works TM
+	for row in flag:	# Just works™
 		# Alternate displaying the information based on the current row
 		if curr_row == 0:
 			color = color256(flag[curr_row], 'fg')
@@ -107,7 +108,7 @@ def main():
 	if args.flag:
 		draw_info(args.flag)
 	else:
-		draw_info('UIA')
+		draw_info('UPA')
 	if args.choose:
 		# Choose a flag at random from a list of comma-seperated flags
 		flag_choices = args.choose.split(',')
